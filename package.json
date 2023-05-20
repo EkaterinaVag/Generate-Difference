@@ -1,0 +1,22 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "Compares two JSON or YAML files and shows the difference",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EkaterinaVag/frontend-project-46.git"
+  },
+  "author": "Ekaterina Vaganova",
+  "license": "ISC",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "dependencies": {
+    "commander": "^10.0.1"
+  }
+}
