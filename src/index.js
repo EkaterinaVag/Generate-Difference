@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
+import getParsedData from './parsers.js';
 
 const compare = (data1, data2) => {
   const keys1 = Object.keys(data1);
@@ -57,9 +58,17 @@ const compare = (data1, data2) => {
   return `{\n${result.join('\n')}\n}`;
 };
 
+const readFile = (filePath) => fs.readFileSync(path.resolve(process.cwd(), filePath), 'utf8');
+const getExt = (filePath) => path.extname(filePath);
+
 const genDiff = (filepath1, filepath2) => {
-  const obj1 = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), filepath1)));
-  const obj2 = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), filepath2)));
+  const file1 = readFile(filepath1);
+  const file2 = readFile(filepath2);
+  const ext1 = getExt(filepath1);
+  const ext2 = getExt(filepath2);
+
+  const obj1 = getParsedData(file1, ext1);
+  const obj2 = getParsedData(file2, ext2);
   return compare(obj1, obj2);
 };
 
