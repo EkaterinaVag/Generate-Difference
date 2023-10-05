@@ -26,13 +26,13 @@ const stylish = (tree, replacer = ' ', spacesCount = 4) => {
       const { type } = item;
       switch (type) {
         case 'deleted':
-          return `${ident}- ${item.key}: ${stringify(item.value)}`;
+          return `${ident}- ${item.key}: ${stringify(item.value, depth)}`;
         case 'unchanged':
-          return `${ident}  ${item.key}: ${stringify(item.value)}`;
+          return `${ident}  ${item.key}: ${stringify(item.value, depth)}`;
         case 'changed':
-          return (`${ident}- ${item.key}: ${stringify(item.value1)} \n${ident}+ ${item.key}: ${stringify(item.value2)}`);
+          return (`${ident}- ${item.key}: ${stringify(item.value1, depth)} \n${ident}+ ${item.key}: ${stringify(item.value2, depth)}`);
         case 'added':
-          return `${ident}+ ${item.key}: ${stringify(item.value)}`;
+          return `${ident}+ ${item.key}: ${stringify(item.value, depth)}`;
         case 'nested':
           return `${ident}  ${item.key}: ${iter(item.children, depth + 1)}${ident}`;
         default:
