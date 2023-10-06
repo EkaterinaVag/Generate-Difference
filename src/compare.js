@@ -22,6 +22,13 @@ const compare = (data1, data2) => {
         type: 'deleted',
       };
     }
+    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
+      return {
+        type: 'nested',
+        key,
+        children: compare(value1, value2),
+    }
+  }
     if (data1[key] !== data2[key]) {
       return {
         key,
@@ -37,13 +44,6 @@ const compare = (data1, data2) => {
         type: 'unchanged',
       };
     }
-    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
-      return {
-        type: 'nested',
-        key,
-        children: compare(value1, value2),
-    }
-  }
   });
 };
 
