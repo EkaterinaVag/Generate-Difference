@@ -15,8 +15,20 @@ test('genDiff JSON, stylish', () => {
   expect(genDiff(filepath1, filepath2)).toEqual(readFile('expected_stylish.txt'));
 });
 
-test('genDiff YAML, stylish ', () => {
+test('genDiff YAML, stylish', () => {
   const filepath1 = getFixturePath('file1.yml');
   const filepath2 = getFixturePath('file2.yml');
   expect(genDiff(filepath1, filepath2)).toEqual(readFile('expected_stylish.txt'));
+});
+
+test('genDiff JSON, plain', () => {
+  const filepath1 = getFixturePath('file1.yml');
+  const filepath2 = getFixturePath('file2.yml');
+  expect(genDiff(filepath1, filepath2)).toEqual(readFile('expected_plain.txt'));
+});
+
+test('genDiff YAML, plain', () => {
+  const filepath1 = getFixturePath('file1.yml');
+  const filepath2 = getFixturePath('file2.yml');
+  expect(genDiff(filepath1, filepath2)).toEqual(readFile('expected_plain.txt'));
 });
