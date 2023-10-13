@@ -27,8 +27,8 @@ const compare = (data1, data2) => {
         type: 'nested',
         key,
         children: compare(value1, value2),
+      };
     }
-  }
     if (data1[key] !== data2[key]) {
       return {
         key,
@@ -37,13 +37,11 @@ const compare = (data1, data2) => {
         type: 'changed',
       };
     }
-    if (data1[key] === data2[key]) {
-      return {
-        key,
-        value: value1,
-        type: 'unchanged',
-      };
-    }
+    return {
+      key,
+      value: value1,
+      type: 'unchanged',
+    };
   });
 };
 
