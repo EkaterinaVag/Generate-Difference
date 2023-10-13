@@ -21,8 +21,8 @@ const stylish = (tree, replacer = ' ', spacesCount = 4) => {
 
     const currentSpace = spacesCount * depth;
     const ident = replacer.repeat(currentSpace - 2);
-    const closedIdent = replacer.repeat(currentSpace - 4)
-  
+    const closedIdent = replacer.repeat(currentSpace - 4);
+
     const result = node.map((item) => {
       const { type } = item;
       switch (type) {
@@ -37,9 +37,9 @@ const stylish = (tree, replacer = ' ', spacesCount = 4) => {
         case 'nested':
           return `${ident}  ${item.key}: ${iter(item.children, depth + 1)}`;
         default:
-          return null;
+          throw new Error(`Unknown type: '${type}'!`);
       }
-    }); 
+    });
     return `{\n${result.join('\n')}\n${closedIdent}}`;
   };
   return iter(tree, 1);
