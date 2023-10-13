@@ -1,33 +1,32 @@
-const valueType = (value) => {
-    if (typeof value !== 'object' || value === null) {
-        return typeof value === 'string' ? `'${value}'` : `${value}`;
-      }
-      return `[complex value]`;
+const getValueType = (value) => {
+  if (typeof value !== 'object' || value === null) {
+    return typeof value === 'string' ? `'${value}'` : `${value}`;
+  }
+  return '[complex value]';
 };
 
 const plain = (tree) => {
-  const iter = (node, keyName = '') => {
-    const result = node.filter((item) => item.type !== 'unchanged')
-    .map((item) => {
+  const iter = (nodes, keyName = '') => {
+    const result = nodes.filter((node) => node.type !== 'unchanged')
+      .map((item) => {
         const { type } = item;
         const keyPath = [...keyName, item.key].join('');
         switch (type) {
           case 'deleted':
             return `Property '${keyPath}' was removed`;
           case 'changed':
-            return `Property '${keyPath}' was updated. From ${valueType(item.value1)} to ${valueType(item.value2)}`;
+            return `Property '${keyPath}' was updated. From ${getValueType(item.value1)} to ${getValueType(item.value2)}`;
           case 'added':
-            return `Property '${keyPath}' was added with value: ${valueType(item.value)}`;
+            return `Property '${keyPath}' was added with value: ${getValueType(item.value)}`;
           case 'nested':
             return iter(item.children, `${keyPath}.`);
           default:
-            return null;
+            throw new Error(`Unknown type: '${type}'!`);
         }
-    });
+      });
     return result.join('\n');
   };
   return iter(tree, '');
 };
 
 export default plain;
- 
