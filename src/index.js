@@ -7,7 +7,7 @@ import formatter from './formatters/index.js';
 const readFile = (filePath) => fs.readFileSync(path.resolve(process.cwd(), filePath), 'utf8');
 const getExt = (filePath) => path.extname(filePath);
 
-const genDiff = (filepath1, filepath2, format) => {
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const file1 = readFile(filepath1);
   const file2 = readFile(filepath2);
   const ext1 = getExt(filepath1);
