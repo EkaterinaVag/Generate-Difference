@@ -9,7 +9,7 @@ const getParsedData = (data, ext) => {
     case '.yaml':
       return yaml.load(data);
     default:
-      throw new Error(`Format ${ext} - is incorrect`);
+      throw new Error(`Unknown extname: '${ext}'!`);
   }
 };
 
