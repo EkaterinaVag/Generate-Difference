@@ -25,7 +25,7 @@ Prerequisites: Node.js
 **For start to run:**
 ```
 
-gendiff --format [option] <path to first file> <path to second file2>
+gendiff --format [option] <path to first file> <path to second file>
 ```
 
 ## Examples of using
