@@ -1,15 +1,8 @@
-const indent = (depth) => {
+const indent = (depth, type = 'first') => {
   const replacer = ' ';
   const spacesCount = 4;
   const currentSpace = spacesCount * depth;
-  return replacer.repeat(currentSpace - 2);
-};
-
-const bracketIndent = (depth) => {
-  const replacer = ' ';
-  const spacesCount = 4;
-  const currentSpace = spacesCount * depth;
-  return replacer.repeat(currentSpace - spacesCount);
+  return type === 'last' ? replacer.repeat(currentSpace - spacesCount) : replacer.repeat(currentSpace - 2);
 };
 
 const stringify = (node, depth) => {
@@ -46,7 +39,7 @@ const stylish = (tree) => {
           throw new Error(`Unknown type: '${type}'!`);
       }
     });
-    return `{\n${result.join('\n')}\n${bracketIndent(depth)}}`;
+    return `{\n${result.join('\n')}\n${indent(depth, 'last')}}`;
   };
   return iter(tree, 1);
 };
