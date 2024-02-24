@@ -13,9 +13,9 @@ Generating a report in the form of plain text, stylish and json.
 Prerequisites: Node.js 
 ```
 
- git clone https://github.com/EkaterinaVag/Generate-Difference.git
+ git clone https://github.com/EkaterinaVag/frontend-project-46.git
 
- cd Generate-Difference
+ cd frontend-project-46
 
  make install
 
